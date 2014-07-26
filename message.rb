@@ -14,8 +14,7 @@ class Message
 
   def remove_non_alphas
     non_alphas_removed = []
-    chars = @text.split('')
-    chars.each do |char|
+    @text.each_char do |char|
       char = '' if !stays_in_msg?(char)
       non_alphas_removed << char
     end
@@ -35,9 +34,7 @@ class Message
 
   def caesar_encrypt(key)
     caesar_encrypted = []
-    chars = remove_non_alphas
-    chars = chars.split('')
-    chars.each do |char|
+    remove_non_alphas.each_char do |char|
       if char != ' '
         char = char.ord + key
         char = put_char_in_range(char)
